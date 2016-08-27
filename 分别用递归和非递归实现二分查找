@@ -1,0 +1,50 @@
+#include <iostream>
+
+using namespace std;
+
+//非递归二分查找
+int BinarySearch(int array[], int len, int findData)
+{
+    if(array==NULL || len<=0)//不能array[]==NULL
+        return -1;
+    int left=0;
+    int right=len-1;
+    int mid;
+    while(left<=right)
+    {
+        mid=(left+right)/2;
+        if(array[mid]==findData)
+            return mid;
+        else if(array[mid]>findData)
+            right=mid-1;
+        else
+            left=mid+1;
+    }
+    return -1;
+}
+
+//递归二分查找
+int BinarySearchRecursion(int array[], int left,int right, int findData)
+{
+    if(array==NULL || right-left<=0)
+        return -1;
+    int mid=(left+right)/2;
+    if(array[mid]==findData)
+        return mid;
+    else if(array[mid]>findData)
+        return BinarySearchRecursion(array, left, mid-1, findData);
+    else
+        return BinarySearchRecursion(array, mid+1, right, findData);
+}
+
+int main()
+{
+    int array[]={1,2,3,4,5,6,7,8};
+    int length=sizeof(array)/sizeof(array[0]);
+    int x=4;
+    int res1=BinarySearch(array, length, x);
+    int res2=BinarySearchRecursion(array, 0, length-1, x);
+    cout << "res1=" << res1 << endl;
+    cout << "res2=" << res2 << endl;
+    return 0;
+}
