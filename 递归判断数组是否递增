@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+bool IsIncrease(int a[], int len)
+{
+    if(*a==NULL || len<=0)
+        return false;
+    if(len==1)
+        return true;
+    return (a[len-1]-a[len-2]) && IsIncrease(a, len-1);
+}
+
+int main()
+{
+    int a[]={1,2,3,4,5,6};
+    int len = sizeof(*a)/sizeof(a[0]);
+    if(IsIncrease(a, len))
+        cout << "a[] is increase" << endl;
+    else
+        cout << "a[] isn't increase" << endl;
+    return 0;
+}
