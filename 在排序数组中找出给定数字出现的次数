@@ -1,0 +1,38 @@
+#include<iostream>
+
+using namespace std;
+
+int BinarySearch(int a[], int len,int FindData, bool isleft)
+{
+    int left=0;
+    int right=len-1;
+    int mid, res;
+    while(left<right)
+    {
+        mid=(left+right)/2;
+        if(a[mid]<FindData)
+            left=mid+1;
+        else if(a[mid]>FindData)
+            right=mid-1;
+        else
+        {
+            res=mid;
+            if(isleft)
+                right=mid-1;
+            else
+                left=mid+1;
+        }
+    }
+    return res;
+}
+
+int main()
+{
+    int a[]={1,1,1,2,2,2,2,3,3,3,3,3,4};
+    int len=sizeof(a)/sizeof(a[0]);
+    int num=2;
+    int left=BinarySearch(a, len, num, true);
+    int right=BinarySearch(a, len, num, false);
+    cout << "The number of " << num << " is " << right-left << endl;
+    return 0;
+}
