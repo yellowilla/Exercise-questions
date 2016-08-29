@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//给定数组为升序
 int BinarySearch(int a[], int len,int FindData, bool isleft)
 {
     int left=0;
