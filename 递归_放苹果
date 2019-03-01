@@ -1,0 +1,42 @@
+/*
+题目：
+
+M个同样的苹果，放在N个同样的盘子里，可以有空盘，有多少分法
+
+假如有7个苹果，3个盘子
+1 1 5 和 1 5 1
+是相同的分法
+*/
+
+/*
+思路:
+
+一，m < n，即苹果数<盘子
+    多于的盘子肯定为空，相当于没有，故f(m,n) = f(m,m)
+二，m >= n, 即苹果数>=盘子
+    1，有空盘，则至少有一个空盘，这个空盘相当于没有，故f(m,n) = f(m,n-1)
+    2，无空盘，则每盘至少一个苹果，这个苹果相当于没有，故f(m,n) = f(m-n, n)
+*/
+
+#include <iostream>
+using namespace std;
+
+int count(int m, int n)
+{
+	if (m<=1 || n<=1)
+		return 1;
+	
+	if (m < n)
+		return count(m, m);
+	else
+		return count(m, n-1) + count(m-n, n);
+}
+
+int main()
+{
+	int m = 7, n = 3;
+	int num;
+	num = count(m, n);
+	cout << num << endl;
+   	return 0;
+}
